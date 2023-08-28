@@ -28,8 +28,8 @@ create external table if not exists store_sales(
 ,     ss_net_paid_inc_tax decimal(7,2)
 ,     ss_net_profit decimal(7,2)  
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/store_sales'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/store_sales'
 ;
 
 -- Table<store_returns (20 cols)  partition=sr_returned_date_sk>
@@ -57,8 +57,8 @@ create external table if not exists store_returns(
 ,     sr_store_credit decimal(7,2)
 ,     sr_net_loss decimal(7,2)
 )
-row format delimited fields terminated by '|' 
-location '${LOCATION}/store_returns'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/store_returns'
 ;
 
 -- Table<catalog_sales (34 cols)  partition=cs_sold_date_sk>
@@ -100,8 +100,8 @@ create external table if not exists catalog_sales(
 ,     cs_net_paid_inc_ship_tax decimal(7,2)
 ,     cs_net_profit decimal(7,2)
 )
-row format delimited fields terminated by '|' 
-location '${LOCATION}/catalog_sales'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/catalog_sales'
 ;
 
 -- Table<catalog_returns (27 cols)  partition=cr_returned_date_sk>
@@ -136,8 +136,8 @@ create external table if not exists catalog_returns(
 ,     cr_store_credit decimal(7,2)
 ,     cr_net_loss decimal(7,2)  
 )
-row format delimited fields terminated by '|' 
-location '${LOCATION}/catalog_returns'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/catalog_returns'
 ;
 
 -- Table<web_sales (34 cols)  partition=ws_sold_date_sk>
@@ -179,8 +179,8 @@ create external table if not exists web_sales(
 ,     ws_net_paid_inc_ship_tax decimal(7,2)
 ,     ws_net_profit decimal(7,2)
 )
-row format delimited fields terminated by '|' 
-location '${LOCATION}/web_sales'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/web_sales'
 ;
 
 -- Table<web_returns (24 cols)  partition=wr_returned_date_sk>
@@ -212,8 +212,8 @@ create external table if not exists web_returns(
 ,     wr_account_credit decimal(7,2)
 ,     wr_net_loss decimal(7,2) 
 )
-row format delimited fields terminated by '|' 
-location '${LOCATION}/web_returns'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/web_returns'
 ;
 
 -- Table<inventory (4 cols)>
@@ -225,8 +225,8 @@ create external table if not exists inventory(
 ,     inv_warehouse_sk bigint
 ,     inv_quantity_on_hand int
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/inventory';
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/inventory';
 
 -- Table<store (29 cols)>
 
@@ -262,8 +262,8 @@ create external table if not exists store(
 ,     s_gmt_offset decimal(5,2)
 ,     s_tax_percentage decimal(5,2)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/store'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/store'
 tblproperties ('serialization.null.format'='');
 
 -- Table<call_center (31 cols)>
@@ -302,8 +302,8 @@ create external table if not exists call_center(
 ,     cc_gmt_offset decimal(5,2)
 ,     cc_tax_percentage decimal(5,2)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/call_center'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/call_center'
 tblproperties ('serialization.null.format'='');
 
 -- Table<catalog_page (9 cols)>
@@ -320,8 +320,8 @@ create external table if not exists catalog_page(
 ,     cp_description varchar(100)
 ,     cp_type varchar(100)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/catalog_page'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/catalog_page'
 tblproperties ('serialization.null.format'='');
 
 -- Table<web_site (26 cols)>
@@ -355,8 +355,8 @@ create external table if not exists web_site(
 ,     web_gmt_offset decimal(5,2)  
 ,     web_tax_percentage decimal(5,2)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/web_site'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/web_site'
 tblproperties ('serialization.null.format'='');
 
 -- Table<web_page (14 cols)>
@@ -378,8 +378,8 @@ create external table if not exists web_page(
 ,     wp_image_count int
 ,     wp_max_ad_count int
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/web_page'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/web_page'
 tblproperties ('serialization.null.format'='');
 
 -- Table<warehouse (14 cols)>
@@ -401,8 +401,8 @@ create external table if not exists warehouse(
 ,     w_country varchar(20)
 ,     w_gmt_offset decimal(5,2)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/warehouse'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/warehouse'
 tblproperties ('serialization.null.format'='');
 
 -- Table<customer (18 cols)>
@@ -428,8 +428,8 @@ create external table if not exists customer(
 ,     c_email_address char(50)
 ,     c_last_review_date_sk bigint
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/customer'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/customer'
 tblproperties ('serialization.null.format'='');
 
 -- Table<customer_address (13 cols)>
@@ -450,8 +450,8 @@ create external table if not exists customer_address(
 ,     ca_gmt_offset decimal(5,2)
 ,     ca_location_type char(20)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/customer_address'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/customer_address'
 tblproperties ('serialization.null.format'='');
 
 -- Table<customer_demographics (9 cols)>
@@ -468,8 +468,8 @@ create external table if not exists customer_demographics(
 ,     cd_dep_employed_count int
 ,     cd_dep_college_count int
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/customer_demographics'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/customer_demographics'
 tblproperties ('serialization.null.format'='');
 
 -- Table<date_dim (28 cols)>
@@ -505,8 +505,8 @@ create external table if not exists date_dim(
 ,     d_current_quarter char(1)
 ,     d_current_year char(1)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/date_dim'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/date_dim'
 tblproperties ('serialization.null.format'='');
 
 -- Table<household_demographics (5 cols)>
@@ -519,8 +519,8 @@ create external table if not exists household_demographics(
 ,     hd_dep_count int
 ,     hd_vehicle_count int
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/household_demographics'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/household_demographics'
 tblproperties ('serialization.null.format'='');
 
 -- Table<item (22 cols)>
@@ -550,8 +550,8 @@ create external table if not exists item(
 ,     i_manager_id int
 ,     i_product_name char(50)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/item'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/item'
 tblproperties ('serialization.null.format'='');
 
 -- Table<income_band (3 cols)>
@@ -562,8 +562,8 @@ create external table if not exists income_band(
 ,     ib_lower_bound int
 ,     ib_upper_bound int
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/income_band';
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/income_band';
 
 -- Table<promotion (19 cols)>
 
@@ -589,8 +589,8 @@ create external table if not exists promotion(
 ,     p_purpose char(15)
 ,     p_discount_active char(1)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/promotion'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/promotion'
 tblproperties ('serialization.null.format'='');
 
 -- Table<reason (3 cols)>
@@ -601,8 +601,8 @@ create external table if not exists reason(
 ,     r_reason_id char(16)
 ,     r_reason_desc char(100)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/reason'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/reason'
 tblproperties ('serialization.null.format'='');
 
 -- Table<ship_mode (6 cols)>
@@ -616,8 +616,8 @@ create external table if not exists ship_mode(
 ,     sm_carrier char(20)
 ,     sm_contract char(20)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/ship_mode'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/ship_mode'
 tblproperties ('serialization.null.format'='');
 
 -- Table<time_dim (10 cols)>
@@ -635,8 +635,8 @@ create external table if not exists time_dim(
 ,     t_sub_shift char(20)
 ,     t_meal_time char(20)
 )
-row format delimited fields terminated by '|'
-location '${LOCATION}/time_dim'
+stored as parquet
+location 's3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/tpcds_bin_partitioned_parq_1000_external.db/time_dim'
 tblproperties ('serialization.null.format'='');
 
 
