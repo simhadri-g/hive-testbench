@@ -24,8 +24,8 @@ done
 
 $HIVE_HOME/bin/beeline -u ${JDBC_URL} -n ${USER} -p ${PASS} --hivevar DB=${TARGET_DB} --hivevar REDUCERS=${REDUCERS} -f analyze.sql
 
-sudo rm -fr ${TARGET_DB}
-sudo mkdir ${TARGET_DB}
+rm -fr ${TARGET_DB}
+mkdir ${TARGET_DB}
 COUNT_OUT=counts.txt
 
 for TABLE in $(echo call_center catalog_page catalog_returns catalog_sales customer customer_address customer_demographics date_dim household_demographics income_band inventory item promotion reason ship_mode store store_returns store_sales time_dim warehouse web_page web_returns web_sales web_site)

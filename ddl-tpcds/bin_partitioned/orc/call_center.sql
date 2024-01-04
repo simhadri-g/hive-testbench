@@ -15,26 +15,12 @@ set hive.optimize.sort.dynamic.partition.threshold=0;
 set iceberg.mr.schema.auto.conversion=true;
 
 create database if not exists ${DB};
-use ${DB};
+use tpcds_partitioned_orc_1000_external_db;
 
-create external table if not exists web_page(
-      wp_web_page_sk bigint
-,     wp_web_page_id char(16)
-,     wp_rec_start_date date
-,     wp_rec_end_date date
-,     wp_creation_date_sk bigint
-,     wp_access_date_sk bigint
-,     wp_autogen_flag char(1)
-,     wp_customer_sk bigint
-,     wp_url varchar(100)
-,     wp_type char(50)
-,     wp_char_count int
-,     wp_link_count int
-,     wp_image_count int
-,     wp_max_ad_count int
-)
+drop table if exists call_center;
+
+create external table call_center
 ${STORED_BY}
-stored as ${FILE}
-location "s3a://dfingerman-bucket/my-dl/warehouse/tablespace/external/hive/${DB}.db/web_page"
+stored as orc
 ${TABLE_PROPS}
-;
+as select * from ${SOURCE}.call_center;
