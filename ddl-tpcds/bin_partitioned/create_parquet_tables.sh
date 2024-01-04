@@ -1,12 +1,12 @@
 #!/bin/sh
 
-JDBC_URL="jdbc:hive2://hs2-difin-dwx-dev.dw-difin-dwx-dev.svbr-nqvp.int.cldr.work/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true"
-USER=csso_dfingerman
-PASS=ASDqwe12#
+JDBC_URL="jdbc:hive2://localhost:10000/"
+USER=
+PASS=
 
 FORMAT=orc
 TARGET_DB=tpcds_partitioned_${FORMAT}_1000_external
-SOURCE_DB=tpcds_partitioned_parquet_1000_external
+SOURCE_DB=tpcds_1000_text
 REDUCERS=2500
 PROPS="TBLPROPERTIES ('engine.hive.enabled'='true', 'format-version'='2')"
 ICEBERG=false
